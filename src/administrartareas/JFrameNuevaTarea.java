@@ -3,10 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package administrartareas;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.JTextPane;
 /**
  *
@@ -14,7 +10,9 @@ import javax.swing.JTextPane;
  */
 public class JFrameNuevaTarea extends javax.swing.JFrame
 {    
-    FrameTareas frameTareas = new FrameTareas();
+    private FrameTareas frameTareas = new FrameTareas();
+    private GuardarTarea guardarTarea = GuardarTarea.getGuardarTarea();
+    private boolean actualizar = false;
     /**
      * Creates new form JFrameTarea
      */
@@ -109,23 +107,37 @@ public class JFrameNuevaTarea extends javax.swing.JFrame
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        CrearTarea crearTarea = CrearTarea.getCrearTarea(frameTareas);
         JTextPane descripcionTarea = null;
-        if(jTextDescripcion.getViewport().getView() instanceof JTextPane)
-        {
-            descripcionTarea = (JTextPane) jTextDescripcion.getViewport().getView();
-            GuardarTarea guardarTarea = GuardarTarea.getGuardarTarea();
+        descripcionTarea = (JTextPane) jTextDescripcion.getViewport().getView();        
+        if(jTextDescripcion.getViewport().getView() 
+                instanceof JTextPane && !actualizar) 
+        {          
             guardarTarea.nuevaTarea(jTextTitulo.getText(), jTextPane.getText(), 
                     jComboBox1.getSelectedIndex());
-            
-            frameTareas.updatePanel();
         }
+        else if(actualizar)
+        {
+            actualizar = false;
+            guardarTarea.setTitulo(guardarTarea.getIndex(), jTextTitulo.getText());
+            guardarTarea.setDescripcion(guardarTarea.getIndex(), jTextPane.getText());
+            guardarTarea.setPrioridad(guardarTarea.getIndex(), jComboBox1.getSelectedIndex());            
+        }
+        jTextTitulo.setText("");
+        jTextPane.setText("");
+        jComboBox1.setSelectedIndex(0);
+        crearTarea.disable();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    public void traer(int i){
+        actualizar = true; 
+        guardarTarea.setIndex(i);
+        jTextTitulo.setText(guardarTarea.getTitulo(i));
+        jTextPane.setText(guardarTarea.getDescripcion(i));
+        jComboBox1.setSelectedIndex(guardarTarea.getPrioridad(i));
+    }
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;

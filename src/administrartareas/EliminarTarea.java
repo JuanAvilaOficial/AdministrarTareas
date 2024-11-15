@@ -20,7 +20,7 @@ public class EliminarTarea
     
     private EliminarTarea(ArrayList<JToggleButton> tb)
     {
-        this.tb = new ArrayList<>(tb);
+        this.tb = new ArrayList<JToggleButton>(tb);
     }
     
     public static EliminarTarea getEliminarTarea(ArrayList<JToggleButton> tb)
@@ -31,6 +31,7 @@ public class EliminarTarea
     }
     public void eliminarById(int i){
         tb.remove(i);
+        tb.sort(null);
         guardarTarea.actualizarTareas(tb);
     }
 }

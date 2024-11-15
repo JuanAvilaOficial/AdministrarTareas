@@ -16,7 +16,7 @@ import administrartareas.JFrameNuevaTarea;
  */
 public class CrearTarea extends JToggleButton
 {
-    private static JFrame jFrameCrearTarea = new JFrameNuevaTarea();
+    private static JFrameNuevaTarea jFrameCrearTarea = new JFrameNuevaTarea();
     private final JFrame jFrameTareas;
     private static CrearTarea crearTarea;
     
@@ -34,14 +34,22 @@ public class CrearTarea extends JToggleButton
     @Override
     public void enable()
     {  
-       jFrameCrearTarea.setVisible(true);
-       //jFrameTareas.setVisible(false);
+       this.jFrameCrearTarea.setVisible(true);
+       //this.jFrameTareas.setVisible(false);
     }
+    public void enable(int i)
+    {  
+       this.jFrameCrearTarea.setVisible(true);
+       this.jFrameCrearTarea.traer(i);
+       //this.jFrameTareas.setVisible(false);
+    }
+    
     
     @Override
     public void disable() 
     {
-        jFrameCrearTarea.setEnabled(false);
-        jFrameTareas.setVisible(true);
+        
+        this.jFrameCrearTarea.setVisible(false);
+        this.jFrameTareas.setVisible(true);
     }    
 }

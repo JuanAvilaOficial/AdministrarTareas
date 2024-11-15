@@ -4,11 +4,12 @@
  */
 package administrartareas;
 
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JToggleButton;
 
 /**
@@ -16,15 +17,17 @@ import javax.swing.JToggleButton;
  * @author Juan Avila
  */
 public class FrameTareas extends javax.swing.JFrame 
-{      
-    GuardarTarea guardarTarea = GuardarTarea.getGuardarTarea();
-    ArrayList<JToggleButton> listaTareasToggle = new ArrayList<>();
-
+{          
+    private ArrayList<JToggleButton> listaTareasToggle = 
+                new ArrayList<JToggleButton>();
+    private GuardarTarea guardarTarea = GuardarTarea.getGuardarTarea();
+   
     /**
      * Creates new form Tareas
      */
     public FrameTareas() {
         initComponents();
+       updatePanel();
     }
         
     @SuppressWarnings("unchecked")
@@ -35,6 +38,11 @@ public class FrameTareas extends javax.swing.JFrame
         botonEleminarTarea = new javax.swing.JButton();
         botonCrearTarea1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jToggleButton3 = new javax.swing.JToggleButton();
+        jToggleButton4 = new javax.swing.JToggleButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,40 +70,103 @@ public class FrameTareas extends javax.swing.JFrame
         jPanel1.setForeground(new java.awt.Color(102, 51, 255));
         jPanel1.setToolTipText("");
 
+        jToggleButton1.setText("Tarea#1");
+        jToggleButton1.setAlignmentY(0.0F);
+        jToggleButton1.setBorderPainted(false);
+        jToggleButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        jToggleButton2.setText("Tarea#2");
+        jToggleButton2.setBorderPainted(false);
+        jToggleButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        jToggleButton3.setText("Tarea#3");
+        jToggleButton3.setBorderPainted(false);
+        jToggleButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        jToggleButton4.setText("Tarea#4");
+        jToggleButton4.setActionCommand("Tarea#1");
+        jToggleButton4.setBorderPainted(false);
+        jToggleButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 181, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToggleButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 177, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(54, Short.MAX_VALUE)
+                .addComponent(jToggleButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jToggleButton3)
+                .addGap(18, 18, 18)
+                .addComponent(jToggleButton4)
+                .addGap(15, 15, 15))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jToggleButton1)
+                    .addContainerGap(137, Short.MAX_VALUE)))
         );
+
+        jToggleButton1.getAccessibleContext().setAccessibleName("Tarea_1");
+        jToggleButton2.getAccessibleContext().setAccessibleName("Tarea_2");
+        jToggleButton2.getAccessibleContext().setAccessibleDescription("");
+        jToggleButton3.getAccessibleContext().setAccessibleName("Tarea_3");
+        jToggleButton4.getAccessibleContext().setAccessibleName("Tarea_4");
+
+        jButton1.setText("       ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(Titulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(botonEleminarTarea)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                         .addComponent(botonCrearTarea1)))
                 .addGap(15, 15, 15))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(Titulo)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Titulo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Titulo)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -109,19 +180,56 @@ public class FrameTareas extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCrearTarea1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearTarea1ActionPerformed
-        // TODO add your handling code here:        
+        // TODO add your handling code here:    
         CrearTarea crearTarea = CrearTarea.getCrearTarea(this);
-        crearTarea.enable();
+        boolean b = false;
+        int t = 0; 
+        for(int i = 0; i < listaTareasToggle.size(); i++)
+        {
+            if(listaTareasToggle.get(i).isSelected())
+            {               
+               t= i;
+               b = true;
+               listaTareasToggle.get(i).setSelected(false);
+               listaTareasToggle.get(i).setVisible(true);
+               //guardarTarea.actualizarTareas(listaTareasToggle);
+               break;
+            }            
+        }     
+        if(!b) 
+            crearTarea.enable();
+        else
+            crearTarea.enable(t);            
+        
+        updatePanel();
     }//GEN-LAST:event_botonCrearTarea1ActionPerformed
 
     private void botonEleminarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEleminarTareaActionPerformed
-        // TODO add your handling code here:
-        EliminarTarea eliminarTarea = 
-                EliminarTarea.getEliminarTarea(listaTareasToggle);
-        for(JToggleButton tb : listaTareasToggle)
-            //eliminarTarea.eliminarById(0);
+        EliminarTarea eliminarTarea = EliminarTarea.getEliminarTarea(listaTareasToggle);
+        for(int i = 0; i < listaTareasToggle.size(); i++)
+        {
+            if(listaTareasToggle.get(i).isSelected())
+            {
+               listaTareasToggle.get(i).setSelected(false);
+               eliminarTarea.eliminarById(i);               
+               listaTareasToggle.get(i).setVisible(false);
+               break;
+            }            
+        }
+        guardarTarea.actualizarTareas(listaTareasToggle);
         updatePanel();
+        
     }//GEN-LAST:event_botonEleminarTareaActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+                        
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        updatePanel();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,7 +265,7 @@ public class FrameTareas extends javax.swing.JFrame
         }
         //</editor-fold>
         //</editor-fold>
-  
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
         {
@@ -167,30 +275,40 @@ public class FrameTareas extends javax.swing.JFrame
             }
         });
     }    
-    public void updatePanel(){
-        jPanel1.removeAll();
-        listaTareasToggle = new ArrayList<>(
-            guardarTarea.recupararTareas()
-        );
-        
-        for(JToggleButton tb: listaTareasToggle)
+    public void updatePanel(){        
+        ArrayList<JToggleButton> temp = new ArrayList<JToggleButton>(guardarTarea.recupararTareas());
+        if(listaTareasToggle.size() == 0)
         {
-            System.out.println("df");
-            tb.setPreferredSize(new Dimension(300, 150));
-            tb.setVisible(true);
-            jPanel1.add(tb);
-            
+            listaTareasToggle.add(jToggleButton1);
+            listaTareasToggle.add(jToggleButton2);
+            listaTareasToggle.add(jToggleButton3);
+            listaTareasToggle.add(jToggleButton4);           
         }
-        jPanel1.revalidate(); // Actualiza el layout del panel
-        jPanel1.repaint(); // Redibuja el panel para mostrar los cambios
-        jPanel1.setBackground(Color.GREEN);
-        System.out.println("aaa");
+        
+        for (int i= 0; i < listaTareasToggle.size(); i++){
+
+           listaTareasToggle.get(i).setVisible(false);
+        }
+        for (int i= 0; i < temp.size(); i++)
+            {   
+                listaTareasToggle.get(i).setVisible(true);
+                listaTareasToggle.get(i).setBackground(guardarTarea.getBackground(guardarTarea.getPrioridad(i)));
+                listaTareasToggle.get(i).setText(
+                   guardarTarea.getTitulo(i)
+                );           
+            }
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Titulo;
     private javax.swing.JButton botonCrearTarea1;
     private javax.swing.JButton botonEleminarTarea;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    public javax.swing.JToggleButton jToggleButton1;
+    public javax.swing.JToggleButton jToggleButton2;
+    public javax.swing.JToggleButton jToggleButton3;
+    public javax.swing.JToggleButton jToggleButton4;
     // End of variables declaration//GEN-END:variables
      
 }
